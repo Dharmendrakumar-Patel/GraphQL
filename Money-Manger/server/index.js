@@ -1,13 +1,26 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import cors from 'cors';
 import { ApolloServer } from '@apollo/server'
+import { expressMiddleware } from "@apollo/server/express4"
+import typeDefs from "./typeDef/index.js"
+import resolvers from "./resolver/index.js"
 dotenv.config()
 
 const port = process.env.PORT || 3000
 
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+});
+
+await server.start();
+
 const app = express()
 
-express.json()
+app.use(express.json())
+app.use(cors())
+app.use('/graphql', expressMiddleware(server));
 
 app.get('/', (req,res) => {
     res.send('Welcome To Money Manager Backend')
