@@ -55,7 +55,7 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 app.use('/graphql', expressMiddleware(server, {
-    context: async ({ req }) => buildContext({ req })
+    context: async ({ req, res }) => buildContext({ req, res })
 }));
 
 app.get('/', (req,res) => {
