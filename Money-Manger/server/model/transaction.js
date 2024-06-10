@@ -1,38 +1,33 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 const transactionSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        require: [true, "provide an userId"]
+        required: [true, "Please provide a userId"]
     },
-    description : {
+    description: {
         type: String,
-        require: [true, "provide a description."],
+        required: [true, "Please provide a description."]
     },
-    paymentType : {
+    paymentType: {
         type: String,
-        enum: ["cash", "debit card", "credit card", "net banking", "mobile banking", "upi"],
-        require: true
+        required: [true, "Please provide a Payment Type."]
     },
-    category : {
+    category: {
         type: String,
-        require: true
+        required: [true, "Please provide a category."]
     },
-    amount : {
+    amount: {
         type: Number,
-        require: true,
+        required: true,
         default: 0
     },
     location: {
-        location: String,
-        require: true
-    },
-    date: {
-        type: Date,
-        require: true
+        type: String,
+        required: true
     }
-}, { timestamps: true })
+}, { timestamps: true });
 
-const Transaction = new mongoose.model("Transaction", transactionSchema)
+const Transaction = mongoose.model("Transaction", transactionSchema);
 
-export default Transaction
+export default Transaction;

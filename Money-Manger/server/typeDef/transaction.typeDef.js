@@ -7,8 +7,9 @@ const transactionTypeDef = `#graphql
         category: String!
         amount: Float!
         location: String
-        date: String!
         user: User!
+        createdAt: String
+        updatedAt: String
     }
 
     type Query {
@@ -27,7 +28,6 @@ const transactionTypeDef = `#graphql
         paymentType: String!
         category: String!
         amount: Float!
-        date: String!
         location: String
     }
 
@@ -38,7 +38,6 @@ const transactionTypeDef = `#graphql
         category: String
         amount: Float
         location: String
-        date: String
     }
 `
 
